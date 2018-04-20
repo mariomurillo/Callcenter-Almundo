@@ -43,5 +43,5 @@ jobs:
       - run: mvn integration-test
       
       # Pipe to bash (Jenkins)
-      curl -s https://codecov.io/bash | bash -s - -t fbfd1131-e5e6-43e3-aa2b-84befadf3ce6
+      - run: curl -s https://codecov.io/bash | bash -s - -t fbfd1131-e5e6-43e3-aa2b-84befadf3ce6
 
