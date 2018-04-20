@@ -33,9 +33,6 @@ jobs:
           - v1-dependencies-
 
       - run: mvn dependency:go-offline
-
-      - store_test_results:
-          path: test-results
     
       - save_cache:
           paths:
