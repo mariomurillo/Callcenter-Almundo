@@ -22,6 +22,25 @@ public class Employee implements Comparable<Employee>{
     /** The employee name */
     private String name;
     
+   /**
+    public Role getRole() {
+        return role;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public Employee(Role role, String name) {
+        
+        this.role = role;
+        this.name = name;
+    }
+    
+    @Override
+    public String toString() {
+        return "Employee(role=" + getRole() + ", name=" + getName() + ") ordinal=" + getRole().ordinal();
+    }*/
     
     @Override
     public int compareTo(Employee o) {
