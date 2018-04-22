@@ -27,7 +27,7 @@ public class EmployeeController {
     /**
      * Constructor for employee controller
      */
-    public EmployeeController(IEmployeesQueueService employeesQueueService) {
+    public EmployeeController(final IEmployeesQueueService employeesQueueService) {
         this.employeesQueueService = employeesQueueService;
     }
     

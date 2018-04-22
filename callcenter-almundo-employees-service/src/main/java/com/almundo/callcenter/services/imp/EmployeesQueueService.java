@@ -20,20 +20,20 @@ import com.almundo.callcenter.services.IEmployeesQueueService;
 @Log4j
 public class EmployeesQueueService implements IEmployeesQueueService {
     
+    /** The employee queue manager */
     private IEmployeesQueueManager employeesQueueManager = EmployeesQueueManager.getInstance();
     
     /**
      * @inhericDoc
      */
     @Override
-    public void create(Employee employee) throws CallcenterAlmundoException {
+    public void create(final Employee employee) throws CallcenterAlmundoException {
         
-        log.debug("EmployeesQueueService::create [" + employee.toString() + "]");
+        log.debug("EmployeesQueueService::create [" + employee + "]");
         
         try{
             employeesQueueManager.offer(employee);
         } catch(NullPointerException e) {
-            
             log.error("EmployeesQueueService::create Error [{}]", e.getCause());
             
             throw new CallcenterAlmundoException(e.getMessage(), e.getCause());
