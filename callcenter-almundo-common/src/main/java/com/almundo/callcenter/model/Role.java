@@ -2,7 +2,7 @@ package com.almundo.callcenter.model;
 
 
 /**
- * This enum represents the differents roles of an employee in the application
+ * <b>Description:<b> This enum represents the differents roles of an employee in the application
  * 
  * @author <a href="mailto:mardres@gmail.com">Mario Andres Murillo</a>
  * @since 21/04/2018

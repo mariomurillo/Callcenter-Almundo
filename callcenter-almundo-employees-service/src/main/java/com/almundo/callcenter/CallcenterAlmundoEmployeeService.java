@@ -4,13 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * <b>Description:<b> The call center application entry point
+ * <b>Description:<b> The call center application employee service entry point
  * 
  * @author <a href="mailto:mardres@gmail.com">Mario Andres Murillo</a>
  * @since 21/04/2018
  */
 @SpringBootApplication
-public class CallcenterAlmundoApplication {
+public class CallcenterAlmundoEmployeeService {
     
     /**
      * The main method
@@ -18,6 +18,6 @@ public class CallcenterAlmundoApplication {
      * @param args The arguments
      */
     public static void main(String[] args) {
-		SpringApplication.run(CallcenterAlmundoApplication.class, args);
-	}
+        SpringApplication.run(CallcenterAlmundoEmployeeService.class, args);
+    }
 }

@@ -6,14 +6,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * <b>Description:<b> This class represent the test for call center Almundo application
+ * <b>Description:<b> This class represent the test for employees service
  * 
  * @author <a href="mailto:mardres@gmail.com">Mario Andres Murillo</a>
  * @since 21/04/2018
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CallcenterAlmundoApplicationTests {
+public class CallcenterAlmundoEmployeeServiceTest {
     
     /**
      * The test case for context load
