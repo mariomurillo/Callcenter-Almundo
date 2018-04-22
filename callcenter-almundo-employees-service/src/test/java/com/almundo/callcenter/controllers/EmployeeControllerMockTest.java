@@ -13,6 +13,8 @@ import com.almundo.callcenter.manager.IEmployeesQueueManager;
 import com.almundo.callcenter.manager.imp.EmployeesQueueManager;
 import com.almundo.callcenter.model.Employee;
 import com.almundo.callcenter.model.Role;
+import com.almundo.callcenter.services.IEmployeesQueueService;
+import com.almundo.callcenter.services.imp.EmployeesQueueService;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.web.reactive.function.BodyInserters.fromObject;
@@ -32,8 +34,8 @@ public class EmployeeControllerMockTest {
     /** The employee controler under test */
     private EmployeeController controller;
     
-    /** The employee queue manager for tests */
-    private IEmployeesQueueManager employeesQueueManager;
+    /** The employee queue service for tests */
+    private IEmployeesQueueService employeesQueueService;
     
     /**
      * The method that runs before every test
@@ -41,10 +43,11 @@ public class EmployeeControllerMockTest {
     @Before
     public void setUp() {
         
-        employeesQueueManager = EmployeesQueueManager.getInstance();
-        employeesQueueManager.clear();
+        EmployeesQueueManager.getInstance().clear();
         
-        controller = new EmployeeController(employeesQueueManager);
+        employeesQueueService = Mockito.mock(EmployeesQueueService.class);
+        
+        controller = new EmployeeController(employeesQueueService);
         
         webTestClient = WebTestClient.bindToController(controller).build();
     }

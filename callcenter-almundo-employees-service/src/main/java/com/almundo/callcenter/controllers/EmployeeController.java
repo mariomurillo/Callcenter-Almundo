@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.almundo.callcenter.exceptions.CallcenterAlmundoException;
 import com.almundo.callcenter.manager.IEmployeesQueueManager;
 import com.almundo.callcenter.model.Employee;
+import com.almundo.callcenter.services.IEmployeesQueueService;
 
 /**
  * <b>Description:<b> This class represent the main controller for employees service
@@ -19,14 +21,14 @@ import com.almundo.callcenter.model.Employee;
 @RestController
 public class EmployeeController {
     
-    /** The employee's queue manager */
-    private IEmployeesQueueManager employeesQueueManager;
+    /** The employees queue service */
+    private IEmployeesQueueService employeesQueueService;
     
     /**
      * Constructor for employee controller
      */
-    public EmployeeController(IEmployeesQueueManager employeesQueueManager) {
-        this.employeesQueueManager = employeesQueueManager;
+    public EmployeeController(IEmployeesQueueService employeesQueueService) {
+        this.employeesQueueService = employeesQueueService;
     }
     
     /**
@@ -36,8 +38,9 @@ public class EmployeeController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/api/v1/employees")
-    public void create(@RequestBody final Employee employee) {
-        employeesQueueManager.offer(employee);
+    public void create(@RequestBody final Employee employee) 
+                    throws CallcenterAlmundoException {
+        employeesQueueService.create(employee);
     }
     
     /**
@@ -45,7 +48,7 @@ public class EmployeeController {
      */
     @GetMapping("/api/v1/employees")
     public Employee get() {
-        return employeesQueueManager.poll();
+        return employeesQueueService.get();
     }
     
 }

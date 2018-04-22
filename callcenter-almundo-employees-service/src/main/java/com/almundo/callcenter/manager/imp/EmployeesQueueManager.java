@@ -3,6 +3,8 @@ package com.almundo.callcenter.manager.imp;
 import java.util.Queue;
 import java.util.concurrent.PriorityBlockingQueue;
 
+import lombok.extern.log4j.Log4j;
+
 import com.almundo.callcenter.manager.IEmployeesQueueManager;
 import com.almundo.callcenter.model.Employee;
 
@@ -12,6 +14,7 @@ import com.almundo.callcenter.model.Employee;
  * @author <a href="mailto:mardres@gmail.com">Mario Andres Murillo</a>
  * @since 21/04/2018
  */
+@Log4j
 public class EmployeesQueueManager implements IEmployeesQueueManager{
     
     /** The employees queue */
@@ -34,6 +37,9 @@ public class EmployeesQueueManager implements IEmployeesQueueManager{
      * @inhericDoc
      */
     public boolean offer(final Employee employee) {
+        
+        log.debug("EmployeesQueueManager::offer [" + employee.toString() + "]");
+        
         return employees.offer(employee);
     }
     
@@ -41,6 +47,9 @@ public class EmployeesQueueManager implements IEmployeesQueueManager{
      * @inhericDoc
      */
     public Employee poll() {
+        
+        log.debug("EmployeesQueueManager::poll");
+        
         return employees.poll();
     }
     
@@ -48,6 +57,9 @@ public class EmployeesQueueManager implements IEmployeesQueueManager{
      * @inhericDoc
      */
     public int size() {
+        
+        log.debug("EmployeesQueueManager::size");
+        
         return employees.size();
     }
     
@@ -55,6 +67,9 @@ public class EmployeesQueueManager implements IEmployeesQueueManager{
      * @inhericDoc
      */
     public void clear() {
+        
+        log.debug("EmployeesQueueManager::clear");
+        
         employees.clear();
     }
     
