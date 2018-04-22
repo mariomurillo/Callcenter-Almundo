@@ -34,7 +34,7 @@ public class EmployeesQueueServiceMockTest {
     }
     
     /**
-     * The test case for create an employee null
+     * The test case for create an employee
      */
     @Test
     public void createTest() {
@@ -51,7 +51,7 @@ public class EmployeesQueueServiceMockTest {
     }
     
     /**
-     * The test case for create an employee
+     * The test case for create an employee null
      */
     @Test(expected = CallcenterAlmundoException.class)
     public void createWithNullTest() throws CallcenterAlmundoException{

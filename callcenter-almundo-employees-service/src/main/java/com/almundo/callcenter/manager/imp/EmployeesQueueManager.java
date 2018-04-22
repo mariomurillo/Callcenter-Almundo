@@ -38,7 +38,7 @@ public class EmployeesQueueManager implements IEmployeesQueueManager{
      */
     public boolean offer(final Employee employee) {
         
-        log.debug("EmployeesQueueManager::offer [" + employee.toString() + "]");
+        log.debug("EmployeesQueueManager::offer [" + employee + "]");
         
         return employees.offer(employee);
     }

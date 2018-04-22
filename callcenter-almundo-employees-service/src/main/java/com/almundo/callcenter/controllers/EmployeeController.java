@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.almundo.callcenter.exceptions.CallcenterAlmundoException;
-import com.almundo.callcenter.manager.IEmployeesQueueManager;
 import com.almundo.callcenter.model.Employee;
 import com.almundo.callcenter.services.IEmployeesQueueService;
 

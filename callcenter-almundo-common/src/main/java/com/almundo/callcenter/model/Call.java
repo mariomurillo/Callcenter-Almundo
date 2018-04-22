@@ -18,5 +18,5 @@ import lombok.Data;
 public class Call {
     
     /** The call duration */
-    private TimeUnit duration;
+    private Long duration;
 }
