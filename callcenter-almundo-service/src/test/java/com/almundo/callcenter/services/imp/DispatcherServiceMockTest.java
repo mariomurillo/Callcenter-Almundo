@@ -1,4 +1,4 @@
-package com.almundo.callcenter.service.imp;
+package com.almundo.callcenter.services.imp;
 
 import java.io.IOException;
 
