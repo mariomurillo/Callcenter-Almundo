@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import com.almundo.callcenter.services.imp.Dispatcher;
+import com.almundo.callcenter.services.imp.DispatcherService;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.MockWebServer;
 
@@ -16,10 +16,10 @@ import com.squareup.okhttp.mockwebserver.MockWebServer;
  * @author <a href="mailto:mardres@gmail.com">Mario Andres Murillo</a>
  * @since 21/04/2018
  */
-public class DispatcherMockTest {
+public class DispatcherServiceMockTest {
     
-    /** The dispatcher under test */
-    private Dispatcher dispatcher;
+    /** The service under test */
+    private DispatcherService dispatcher;
     
     /** The mock web server for tests */
     private MockWebServer server;
@@ -33,7 +33,7 @@ public class DispatcherMockTest {
         server = new MockWebServer();
         server.url("/urlCall/");
         
-        dispatcher = new Dispatcher(1, 
+        dispatcher = new DispatcherService(1, 
         		"http://" + server.getHostName() + ":" + server.getPort() + "/urlCall", 
         		"http://" + server.getHostName() + ":" + server.getPort() + "/urlEmployee/", 
         		"pathCall", 

@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.almundo.callcenter.model.Call;
 import com.almundo.callcenter.process.ProcessAttendCall;
-import com.almundo.callcenter.services.IDispatcher;
+import com.almundo.callcenter.services.IDispatcherService;
 
 /**
  * <b>Description:<b> This class is in charge of dispatch the calls to the employees
@@ -19,7 +19,7 @@ import com.almundo.callcenter.services.IDispatcher;
  * @since 21/04/2018
  */
 @Service
-public class Dispatcher implements IDispatcher {
+public class DispatcherService implements IDispatcherService {
     
     /** Amount max calls allowed */
     private int maxCallsAllowed;
@@ -45,7 +45,7 @@ public class Dispatcher implements IDispatcher {
      * @param pathCallService Path of the call service 
      * @param pathEmployeeService Path of the employee service
      */
-    public Dispatcher(@Value("${max.calls.allowed}") final Integer maxCallsAllowed, 
+    public DispatcherService(@Value("${max.calls.allowed}") final Integer maxCallsAllowed, 
                 @Value("${url.call.service}") final String urlCallService, 
                 @Value("${url.employee.service}") final String urlEmployeeService, 
                 @Value("${path.call.service}") final String pathCallService, 
