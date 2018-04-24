@@ -2,6 +2,7 @@ package com.almundo.callcenter.process;
 
 import lombok.extern.log4j.Log4j;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.almundo.callcenter.model.Call;
@@ -51,6 +52,7 @@ public class ProcessAttendCall implements Runnable{
         
         final Employee employee = webClientEmployeeService.get()
                 .uri(pathEmployeeService)
+                .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToMono(Employee.class)
                 .block();
