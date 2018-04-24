@@ -47,9 +47,15 @@ El servicio encargado de manejar las llamadas podra recibir mas llamadas de las 
 
 En el modelo las llamadas tienen un tiempo de duracion y una prioridad que inicialmente sera la misma para todas, cuando el procesador que se encuentra en el servicio del Dispatcher asigna una llamada a un empleado, esto pone a dormir un hilo durante el tiempo de duracion que tiene la llamada y posteriormente el empleado que fue obtenido de la cola de prioridad vuelve a esta cola con el fin de volver a estar disponible para atender mas llamadas, todo esto consumiendo el servicio para manejar empleados. 
 
-**Arquitectura del proyecto**
+**ARQUITECTURA DEL PROYECTO**
 
-**Referencias: **
+Se manejo un proyecto Maven padre **Callcenter-Almundo** el cual contiene los siguientes modulos:
+
+**callcenter-almundo-call-service** microservicio encargado del manejo de las llamadas
+
+**callcenter-almundo-employees-service** microservicio encargado del mamejo de los empleados
+
+**Referencias:**
 * https://projectreactor.io/docs
 * https://docs.spring.io/spring/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/html/web-reactive.html
 * https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html
