@@ -46,3 +46,13 @@ Cuando llega una o mas llamadas al subscriptor y no se encuentra ningun empleado
 El servicio encargado de manejar las llamadas podra recibir mas llamadas de las que se limitan en el servicio de Dispatcher, ya que este simplemente las dejara en una cola de mensajes y como se explico con anterioridad solo seran procesadas cierta cantidad de llamadas concurrentemente en el servicio del Dispatcher, esta cantidad esta parametrizada en un archivo de configuracion de este mismo servicio.
 
 En el modelo las llamadas tienen un tiempo de duracion y una prioridad que inicialmente sera la misma para todas, cuando el procesador que se encuentra en el servicio del Dispatcher asigna una llamada a un empleado, esto pone a dormir un hilo durante el tiempo de duracion que tiene la llamada y posteriormente el empleado que fue obtenido de la cola de prioridad vuelve a esta cola con el fin de volver a estar disponible para atender mas llamadas, todo esto consumiendo el servicio para manejar empleados. 
+
+**Arquitectura del proyecto**
+
+**Referencias: **
+* https://projectreactor.io/docs
+* https://docs.spring.io/spring/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/html/web-reactive.html
+* https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html
+* https://www.slideshare.net/StphaneMaldini/reactor-30-a-reactive-foundation-for-java-8-and-spring
+* https://docs.codecov.io/docs/supported-languages
+* https://circleci.com/docs/2.0/
