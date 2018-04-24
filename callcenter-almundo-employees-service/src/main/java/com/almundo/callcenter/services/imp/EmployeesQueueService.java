@@ -1,5 +1,7 @@
 package com.almundo.callcenter.services.imp;
 
+import java.util.ArrayList;
+
 import lombok.extern.log4j.Log4j;
 
 import org.springframework.stereotype.Service;
@@ -32,6 +34,9 @@ public class EmployeesQueueService implements IEmployeesQueueService {
         log.debug("EmployeesQueueService::create [" + employee + "]");
         
         try{
+            if(employee != null && employee.getCallsAttended() == null)
+                employee.setCallsAttended(new ArrayList<>());
+                
             employeesQueueManager.offer(employee);
         } catch(NullPointerException e) {
             log.error("EmployeesQueueService::create Error [{}]", e.getCause());

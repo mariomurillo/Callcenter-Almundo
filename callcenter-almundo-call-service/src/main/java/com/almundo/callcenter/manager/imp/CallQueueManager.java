@@ -36,6 +36,7 @@ public class CallQueueManager implements ICallQueueManager {
     /**
      * @inhericDoc
      */
+    @Override
     public boolean offer(final Call call) {
         
         log.debug("CallQueueManager::offer [" + call + "]");
@@ -46,6 +47,7 @@ public class CallQueueManager implements ICallQueueManager {
     /**
      * @inhericDoc
      */
+    @Override
     public Call poll() {
         
         log.debug("CallQueueManager::poll");
@@ -56,6 +58,15 @@ public class CallQueueManager implements ICallQueueManager {
     /**
      * @inhericDoc
      */
+    @Override
+    public Queue<Call> getCalls() {
+        return calls;
+    }
+    
+    /**
+     * @inhericDoc
+     */
+    @Override
     public int size() {
         
         log.debug("CallQueueManager::size");

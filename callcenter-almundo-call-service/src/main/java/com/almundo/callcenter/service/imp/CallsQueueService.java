@@ -1,5 +1,7 @@
 package com.almundo.callcenter.service.imp;
 
+import java.util.Queue;
+
 import lombok.extern.log4j.Log4j;
 
 import org.springframework.stereotype.Service;
@@ -49,5 +51,13 @@ public class CallsQueueService implements ICallsQueueService{
         log.debug("CallsQueueService::get");
         
         return callQueueManager.poll();
+    }
+    
+    /**
+     * @inhericDoc
+     */
+    @Override
+    public Queue<Call> getCalls() {
+        return callQueueManager.getCalls();
     }
 }

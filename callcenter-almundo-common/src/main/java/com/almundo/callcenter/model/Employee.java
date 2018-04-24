@@ -1,5 +1,7 @@
 package com.almundo.callcenter.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +24,9 @@ public class Employee implements Comparable<Employee>{
     
     /** The employee name */
     private String name;
+    
+    /** List of calls attended */
+    private List<Call> callsAttended;
     
     /**
      * @inhericDoc

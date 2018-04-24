@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import reactor.core.publisher.Flux;
+
 import com.almundo.callcenter.exceptions.CallcenterAlmundoException;
 import com.almundo.callcenter.model.Call;
 import com.almundo.callcenter.service.ICallsQueueService;
@@ -43,10 +45,10 @@ public class CallController {
     }
     
     /**
-     * This method gets an employee in the application 
+     * This method returns the call flux 
      */
     @GetMapping("/api/v1/calls")
-    public Call get() {
-        return callsQueueService.get();
+    public Flux<Call> getCalls() {
+        return Flux.fromIterable(callsQueueService.getCalls());
     }
 }

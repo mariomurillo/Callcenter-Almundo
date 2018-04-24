@@ -1,5 +1,7 @@
 package com.almundo.callcenter.services.imp;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,6 +44,25 @@ public class EmployeesQueueServiceMockTest {
             employeesQueueService.create(Employee.builder()
                                 .name("employee")
                                 .role(Role.DIRECTOR)
+                                .callsAttended(new ArrayList<>())
+                                .build());
+                                
+            assertEquals(1, EmployeesQueueManager.getInstance().size());
+        } catch(CallcenterAlmundoException e) {
+            fail();
+        }
+    }
+    
+    /**
+     * The test case for create an employee with calls attended null
+     */
+    @Test
+    public void createWithCallsAttendedNullTest() {
+        try {
+            employeesQueueService.create(Employee.builder()
+                                .name("employee")
+                                .role(Role.DIRECTOR)
+                                .callsAttended(null)
                                 .build());
                                 
             assertEquals(1, EmployeesQueueManager.getInstance().size());

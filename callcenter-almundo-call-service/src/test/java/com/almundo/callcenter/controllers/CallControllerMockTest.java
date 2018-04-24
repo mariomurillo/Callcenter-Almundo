@@ -1,9 +1,15 @@
 package com.almundo.callcenter.controllers;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.test.web.reactive.server.WebTestClient;
+
+import reactor.core.publisher.Flux;
 
 import com.almundo.callcenter.manager.imp.CallQueueManager;
 import com.almundo.callcenter.model.Call;
@@ -22,7 +28,7 @@ import static org.springframework.web.reactive.function.BodyInserters.fromObject
 public class CallControllerMockTest {
     
     /** The web client for tests */
-    private WebTestClient webTestClient;
+    private static WebTestClient webTestClient;
     
     /** The call controler under test */
     private CallController controller;
@@ -49,7 +55,7 @@ public class CallControllerMockTest {
      * The test case for create a call
      */
     @Test
-    public void createEmployeeTest() {
+    public void createCallTest() {
         webTestClient.post()
                 .uri("/api/v1/calls")
                 .body(fromObject(Call.builder()
@@ -60,14 +66,16 @@ public class CallControllerMockTest {
                 .isCreated();
     }
     
-    /** The test case for get a call */
+    /** The test case for get calls */
     @Test
-    public void getEmployee() {
+    public void getCalls() {
+        
+        when(callsQueueService.getCalls()).thenReturn(new LinkedBlockingQueue<>());
+        
         webTestClient.get()
                 .uri("/api/v1/calls")
                 .exchange()
                 .expectStatus()
-                .isOk()
-                .expectBody(Call.class);
+                .isOk();
     }
 }

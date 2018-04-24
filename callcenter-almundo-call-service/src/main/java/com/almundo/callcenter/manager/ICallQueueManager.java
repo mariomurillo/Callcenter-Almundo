@@ -1,5 +1,7 @@
 package com.almundo.callcenter.manager;
 
+import java.util.Queue;
+
 import com.almundo.callcenter.model.Call;
 
 /**
@@ -31,4 +33,9 @@ public interface ICallQueueManager {
      * This method removes all call from the queue
      */
     void clear();
+    
+    /**
+     * This method returns the queue of calls
+     */
+    public Queue<Call> getCalls();
 }

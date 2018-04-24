@@ -1,5 +1,7 @@
 package com.almundo.callcenter.service;
 
+import java.util.Queue;
+
 import com.almundo.callcenter.exceptions.CallcenterAlmundoException;
 import com.almundo.callcenter.model.Call;
 
@@ -22,4 +24,9 @@ public interface ICallsQueueService {
      * This method retrieve and remove a call of the application
      */
     Call get();
+    
+    /**
+     * This method returns the queue of calls
+     */
+    public Queue<Call> getCalls();
 }
