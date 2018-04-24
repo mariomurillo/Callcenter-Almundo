@@ -55,6 +55,14 @@ Se manejo un proyecto Maven padre **Callcenter-Almundo** el cual contiene los si
 
 **callcenter-almundo-employees-service** microservicio encargado del mamejo de los empleados
 
+**callcenter-almundo-service** microservicio con la clase Dispatcher, encargado del procesamiento y asignacion de las llamadas
+
+**callcenter-almundo-common** Proyecto con las clases del modelo, comun a los demas proyectos.
+
+Se decidio manejar un proyecto padre con un **pom**, para facilitar la construccion y asi mismo la integracion en CircleCI
+
+**Diagrama de componentes:**
+
 **Referencias:**
 * https://projectreactor.io/docs
 * https://docs.spring.io/spring/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/html/web-reactive.html
