@@ -7,4 +7,4 @@
 
 Proyecto sobre funcionamiento de call center en java para Almundo
 
-https://raw.githubusercontent.com/reactor/reactor-core/v3.1.3.RELEASE/src/docs/marble/buffersize.png
+![buffer](https://raw.githubusercontent.com/reactor/reactor-core/v3.1.3.RELEASE/src/docs/marble/buffersize.png)
