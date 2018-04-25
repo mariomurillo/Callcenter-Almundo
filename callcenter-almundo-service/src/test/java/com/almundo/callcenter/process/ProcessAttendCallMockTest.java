@@ -33,6 +33,8 @@ public class ProcessAttendCallMockTest {
     /** The mock web server of call service for tests */
     private MockWebServer serverCallService;
     
+    private Call call;
+    
     /**
      * The method that runs before every test
      */
@@ -43,7 +45,7 @@ public class ProcessAttendCallMockTest {
         
         serverCallService = new MockWebServer();
         
-        final Call call = Call.builder()
+        call = Call.builder()
                             .duration(ThreadLocalRandom.current()
                                             .nextLong(5000l, 10000l))
                             .priority(ThreadLocalRandom.current()
@@ -100,7 +102,11 @@ public class ProcessAttendCallMockTest {
 				.setBody("Not Found"));
 		
 		final ExecutorService executorService =  Executors.newSingleThreadExecutor();
-		executorService.execute(processAttendCall);
+		executorService.execute(new ProcessAttendCall(call, 
+                                    null, 
+                                    null, 
+                                    "pathEmployee", 
+                                    "pathCall"));
 		executorService.shutdown();
 		
     }
