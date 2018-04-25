@@ -1,5 +1,6 @@
 package com.almundo.callcenter.process;
 
+import static org.springframework.web.reactive.function.BodyInserters.fromObject;
 import lombok.extern.log4j.Log4j;
 
 import org.springframework.http.MediaType;
@@ -7,8 +8,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.almundo.callcenter.model.Call;
 import com.almundo.callcenter.model.Employee;
-
-import static org.springframework.web.reactive.function.BodyInserters.fromObject;
 
 /**
  * <b>Description:<b> This class is in charge of the process of attending calls

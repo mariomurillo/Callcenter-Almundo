@@ -81,7 +81,7 @@ public class ProcessAttendCallMockTest {
         
         prepareEmployeeResponse(response -> response
 				.setHeader("Content-Type", "application/json")
-				.setBody("[{\"role\":\"Director\",\"name\":\"Pedro\"},{\"role\":\"Operator\",\"name\":\"Pedro\"}]"));
+				.setBody("{\"role\":\"Director\",\"name\":\"Pedro\"}"));
 		
 		final ExecutorService executorService =  Executors.newSingleThreadExecutor();
 		executorService.execute(processAttendCall);
