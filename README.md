@@ -62,7 +62,8 @@ Se manejo un proyecto Maven padre **Callcenter-Almundo** el cual contiene los si
 Se decidio manejar un proyecto padre con un **pom**, para facilitar la construccion y asi mismo la integracion en CircleCI
 
 **Diagrama de componentes:**
-[!diagram](https://image.ibb.co/gtW64H/almundo.png)
+
+image::/callcenter-almundo-common/src/main/resources/img/almundo.png?raw=true[diagram]
 
 **Referencias:**
 * https://projectreactor.io/docs
