@@ -1,6 +1,9 @@
 package com.almundo.callcenter.process;
 
 import static org.springframework.web.reactive.function.BodyInserters.fromObject;
+
+import java.util.Optional;
+
 import lombok.extern.log4j.Log4j;
 
 import org.springframework.http.MediaType;
@@ -61,16 +64,16 @@ public class ProcessAttendCall implements Runnable{
     @Override
     public void run() {
         
-        final Employee employee = webClientEmployeeService.get()
+        final Optional<Employee> employee = webClientEmployeeService.get()
                 .uri(pathEmployeeService)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToMono(Employee.class)
-                .block();
+                .blockOptional();
                 
-        if(employee != null) {
+        if(employee.isPresent()) {
             
-            employee.getCallsAttended().add(call);
+            employee.get().getCallsAttended().add(call);
         
             try {
                 Thread.sleep(call.getDuration());
