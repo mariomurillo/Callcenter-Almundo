@@ -29,7 +29,7 @@ El uso de **CircleCI** es para tener una integracion continua y asi poder estar 
 
 ![CircleCI Status](https://circleci.com/gh/mariomurillo/Callcenter-Almundo.svg?style=svg)
 
-Para la solucion del problema planteado, se decidio construir tres microservicios rest, uno para el manejo de una cola de llamadas, otro para el manejo de una cola de prioridad para los empleados y por ultimo uno con el **Dispatcher**, que es el encargado del procesamiento de llamadas y asignacion a los empleados. 
+Para la solucion del problema planteado, se decidio construir tres microservicios rest, uno para el manejo de una cola de prioridad para las llamadas, otro para el manejo de una cola de prioridad para los empleados y por ultimo uno con el **Dispatcher**, que es el encargado del procesamiento de llamadas y asignacion a los empleados. 
 
 Se uso el framework de **Reactor** que viene implicito dentro de **Spring WebFlux** para hacer uso de la programacion reactiva, de esta forma el maneja el patron **Publish-Subscriber** donde el servicio de llamadas es el encargado de publicar cada vez que llegue una llamada y el servicio donde se encuentra el dispatcher sera el subscriptor.
 
