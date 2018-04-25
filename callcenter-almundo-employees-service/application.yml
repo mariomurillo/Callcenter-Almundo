@@ -1,0 +1,5 @@
+##
+# SPRING BOOT APP CONFIGURATION
+##
+server:
+  port: 18091

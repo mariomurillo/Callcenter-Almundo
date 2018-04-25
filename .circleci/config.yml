@@ -19,6 +19,8 @@ jobs:
     environment:
       # Customize the JVM maximum heap limit
       MAVEN_OPTS: -Xmx3200m
+      #
+      COVERALLS_REPO_TOKEN: fbfd1131-e5e6-43e3-aa2b-84befadf3ce6
     
     steps:
       - checkout
@@ -30,13 +32,20 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
+      - run: mvn clean install
+      
       - run: mvn dependency:go-offline
-
+    
       - save_cache:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
         
       # run tests!
-      - run: mvn integration-test
+      - run: mvn test
+      
+      - run: mvn cobertura:cobertura
+      
+      # Pipe to bash (Jenkins)
+      - run: curl -s https://codecov.io/bash | bash -s - -t fbfd1131-e5e6-43e3-aa2b-84befadf3ce6
 
