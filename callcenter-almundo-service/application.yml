@@ -1,0 +1,18 @@
+##
+# SPRING BOOT APP CONFIGURATION
+##
+server:
+  port: 18092
+max:
+  calls:
+    allowed: 10
+url:
+  call:
+    service: http://localhost:18090
+  employee:
+    service: http://localhost:18091
+path:
+  call:
+    service: /api/v1/calls
+  employee:
+    service: /api/v1/employees

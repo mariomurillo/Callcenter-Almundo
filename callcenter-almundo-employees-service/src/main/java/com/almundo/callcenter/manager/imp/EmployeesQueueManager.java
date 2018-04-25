@@ -1,5 +1,6 @@
 package com.almundo.callcenter.manager.imp;
 
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.PriorityBlockingQueue;
 
@@ -18,7 +19,7 @@ import com.almundo.callcenter.model.Employee;
 public class EmployeesQueueManager implements IEmployeesQueueManager{
     
     /** The employees queue */
-    private static final Queue<Employee> employees = new PriorityBlockingQueue<>();
+    private static final Queue<Employee> employees = new PriorityQueue<>();
     
     /**
      * The constructor method by default

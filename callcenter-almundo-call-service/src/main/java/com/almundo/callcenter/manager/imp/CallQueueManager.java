@@ -1,5 +1,7 @@
 package com.almundo.callcenter.manager.imp;
 
+import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -18,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 public class CallQueueManager implements ICallQueueManager {
     
     /** The calls queue */
-    private static final Queue<Call> calls = new LinkedBlockingQueue<>();
+    private static final Queue<Call> calls = new PriorityQueue<>();
     
     /**
      * The constructor method by default
