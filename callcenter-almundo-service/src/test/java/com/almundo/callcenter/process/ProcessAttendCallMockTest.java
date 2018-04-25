@@ -94,10 +94,10 @@ public class ProcessAttendCallMockTest {
      */
     @Test
     public void runWhenNotFoundEmployeeTest() {
-        
         prepareEmployeeResponse(response -> response
+                .setResponseCode(404)
 				.setHeader("Content-Type", "application/json")
-				.setBody((String) null));
+				.setBody("Not Found"));
 		
 		final ExecutorService executorService =  Executors.newSingleThreadExecutor();
 		executorService.execute(processAttendCall);
