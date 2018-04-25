@@ -46,6 +46,8 @@ public class ProcessAttendCallMockTest {
         final Call call = Call.builder()
                             .duration(ThreadLocalRandom.current()
                                             .nextLong(5000l, 10000l))
+                            .priority(ThreadLocalRandom.current()
+                                            .nextInt(1, 2))
                             .build();
                             
         final WebClient webEmployeeClient = WebClient.builder()
@@ -71,12 +73,31 @@ public class ProcessAttendCallMockTest {
         serverEmployeeService.shutdown();
     }
     
+    /**
+     * The test case for process of attending a call
+     */
     @Test
     public void runTest() {
         
         prepareEmployeeResponse(response -> response
 				.setHeader("Content-Type", "application/json")
 				.setBody("[{\"role\":\"Director\",\"name\":\"Pedro\"},{\"role\":\"Operator\",\"name\":\"Pedro\"}]"));
+		
+		final ExecutorService executorService =  Executors.newSingleThreadExecutor();
+		executorService.execute(processAttendCall);
+		executorService.shutdown();
+		
+    }
+    
+    /**
+     * The test case for process of attending a call when not found an employee available
+     */
+    @Test
+    public void runWhenNotFoundEmployeeTest() {
+        
+        prepareEmployeeResponse(response -> response
+				.setHeader("Content-Type", "application/json")
+				.setBody((String) null));
 		
 		final ExecutorService executorService =  Executors.newSingleThreadExecutor();
 		executorService.execute(processAttendCall);

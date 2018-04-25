@@ -1,5 +1,6 @@
 package com.almundo.callcenter.manager.imp;
 
+import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -42,6 +43,8 @@ public class CallQueueManager implements ICallQueueManager {
     public boolean offer(final Call call) {
         
         log.debug("CallQueueManager::offer [" + call + "]");
+        
+        call.setPriority(BigInteger.ONE.intValue());
         
         return calls.offer(call);
     }
