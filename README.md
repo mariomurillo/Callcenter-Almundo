@@ -63,7 +63,7 @@ Se decidio manejar un proyecto padre con un **pom**, para facilitar la construcc
 
 **Diagrama de componentes:**
 
-image::/callcenter-almundo-common/src/main/resources/img/almundo.png?raw=true[diagram]
+[!diagram](https://raw.githubusercontent.com/mariomurillo/Callcenter-Almundo/develop/callcenter-almundo-common/src/main/resources/img/almundo.png)
 
 **Referencias:**
 * https://projectreactor.io/docs
