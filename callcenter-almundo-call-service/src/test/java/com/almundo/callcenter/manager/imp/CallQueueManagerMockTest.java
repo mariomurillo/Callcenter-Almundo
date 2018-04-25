@@ -3,7 +3,10 @@ package com.almundo.callcenter.manager.imp;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+
+import lombok.extern.log4j.Log4j;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -25,6 +28,7 @@ import static org.junit.Assert.assertNull;
  * @since 21/04/2018
  */
 @FixMethodOrder(MethodSorters.DEFAULT)
+@Log4j
 public class CallQueueManagerMockTest {
     
     /** The manager under test */
@@ -46,7 +50,10 @@ public class CallQueueManagerMockTest {
     public void offerTest() {
         assertTrue(callQueueManager
                 .offer(Call.builder()
-                        .duration(5000l)
+                        .duration(ThreadLocalRandom.current()
+                                            .nextLong(5000l, 10000l))
+                        .priority(ThreadLocalRandom.current()
+                                            .nextInt(1, 2))
                         .build()));
         
         assertEquals(1, CallQueueManager.getInstance().size());
@@ -80,7 +87,10 @@ public class CallQueueManagerMockTest {
     public void pollTest() {
         callQueueManager
                 .offer(Call.builder()
-                        .duration(5000l)
+                        .duration(ThreadLocalRandom.current()
+                                            .nextLong(5000l, 10000l))
+                        .priority(ThreadLocalRandom.current()
+                                            .nextInt(1, 2))
                         .build());
                 
         assertNotNull(callQueueManager.poll());
@@ -122,7 +132,10 @@ public class CallQueueManagerMockTest {
         
         /** The call for offer test */
         private Call call = Call.builder()
-                                .duration(5000l)
+                                .duration(ThreadLocalRandom.current()
+                                            .nextLong(5000l, 10000l))
+                                .priority(ThreadLocalRandom.current()
+                                            .nextInt(1, 2))
                                 .build();
         
         /**

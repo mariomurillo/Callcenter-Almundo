@@ -15,8 +15,20 @@ import lombok.Data;
 @Data
 @Builder
 @SuppressWarnings(value = "unused")
-public class Call {
+public class Call implements Comparable<Call>{
     
     /** The call duration */
     private Long duration;
+    
+    /** The call priority */
+    private Integer priority;
+    
+    /**
+     * @inhericDoc
+     */
+    @Override
+    public int compareTo(Call o) {
+        return getPriority() > o.getPriority() ? -1 
+            : getPriority() < o.getPriority() ? 1 : 0;
+    }
 }

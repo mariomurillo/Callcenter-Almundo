@@ -27,8 +27,11 @@ public class ProcessAttendCallMockTest {
     /** The process of attend call under test */
     private ProcessAttendCall processAttendCall;
     
-    /** The mock web server for tests */
-    private MockWebServer server;
+    /** The mock web server of employee service for tests */
+    private MockWebServer serverEmployeeService;
+    
+    /** The mock web server of call service for tests */
+    private MockWebServer serverCallService;
     
     /**
      * The method that runs before every test
@@ -36,18 +39,28 @@ public class ProcessAttendCallMockTest {
     @Before
     public void setUp() {
         
-        server = new MockWebServer();
+        serverEmployeeService = new MockWebServer();
+        
+        serverCallService = new MockWebServer();
         
         final Call call = Call.builder()
                             .duration(ThreadLocalRandom.current()
-                            .nextLong(5000l, 10000l))
+                                            .nextLong(5000l, 10000l))
                             .build();
                             
-        final WebClient webClient = WebClient.builder()
-                                        .baseUrl(server.url("/urlEmployee/").toString())
+        final WebClient webEmployeeClient = WebClient.builder()
+                                        .baseUrl(serverEmployeeService.url("/urlEmployee/").toString())
                                         .build();
         
-        processAttendCall = new ProcessAttendCall(call, webClient, "pathEmployee");
+        final WebClient webCallClient = WebClient.builder()
+                                        .baseUrl(serverCallService.url("/urlCall/").toString())
+                                        .build();
+        
+        processAttendCall = new ProcessAttendCall(call, 
+                                    webEmployeeClient, 
+                                    webCallClient, 
+                                    "pathEmployee", 
+                                    "pathCall");
     }
     
     /**
@@ -55,13 +68,13 @@ public class ProcessAttendCallMockTest {
      */
     @After
     public void shutdown() throws IOException{
-        server.shutdown();
+        serverEmployeeService.shutdown();
     }
     
     @Test
     public void runTest() {
         
-        prepareResponse(response -> response
+        prepareEmployeeResponse(response -> response
 				.setHeader("Content-Type", "application/json")
 				.setBody("[{\"role\":\"Director\",\"name\":\"Pedro\"},{\"role\":\"Operator\",\"name\":\"Pedro\"}]"));
 		
@@ -72,13 +85,13 @@ public class ProcessAttendCallMockTest {
     }
     
     /**
-     * This method is responsible for preparing the mock server response
+     * This method is responsible for preparing the mock employee server response
      *
      * @param consumer Consume the MockResponse
      */
-    private void prepareResponse(final Consumer<MockResponse> consumer) {
+    private void prepareEmployeeResponse(final Consumer<MockResponse> consumer) {
 		MockResponse response = new MockResponse();
 		consumer.accept(response);
-		server.enqueue(response);
+		serverEmployeeService.enqueue(response);
 	}
 }

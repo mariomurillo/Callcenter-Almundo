@@ -74,12 +74,15 @@ public class DispatcherService implements IDispatcherService {
                     .bodyToFlux(Call.class)
                     .buffer(maxCallsAllowed)
                     .subscribe(calls -> {
+                        final ExecutorService executorService = Executors
+                                                        .newFixedThreadPool(calls.size());
                         calls.forEach(call -> {
-                        	final ExecutorService executorService =  Executors.newSingleThreadExecutor();
                         	executorService.execute(new ProcessAttendCall(
                                         call, 
                                         webClientEmployeeService, 
-                                        pathEmployeeService));
+                                        webClientCallService, 
+                                        pathEmployeeService, 
+                                        pathCallService));
                         	executorService.shutdown();
                         });
                     });

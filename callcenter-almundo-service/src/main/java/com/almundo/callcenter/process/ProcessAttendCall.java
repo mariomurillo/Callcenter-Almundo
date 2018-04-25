@@ -25,23 +25,35 @@ public class ProcessAttendCall implements Runnable{
     /** The web client for employee service */
     private WebClient webClientEmployeeService;
     
+    /** The web client for call service */
+    private WebClient webClientCallService;
+    
     /** Path of the employee service */
     private String pathEmployeeService;
+    
+    /** Path of the call service */
+    private String pathCallService;
     
     /**
      * The constructor for the process for attending a call
      * 
      * @param call The call that goes attend
      * @param webClientEmployeeService The web client for employee service
+     * @param webClientCallService The web client for call service
      * @param pathEmployeeService Path of the employee service
+     * @param pathCallService Path of the call service
      */
     public ProcessAttendCall(final Call calll, 
             final WebClient webClientEmployeeService, 
-            final String pathEmployeeService) {
+            final WebClient webClientCallService,
+            final String pathEmployeeService, 
+            final String pathCallService) {
         
         this.call = calll;
         this.webClientEmployeeService = webClientEmployeeService;
+        this.webClientCallService = webClientCallService;
         this.pathEmployeeService = pathEmployeeService;
+        this.pathCallService = pathCallService;
     }
     
     /**
@@ -57,18 +69,33 @@ public class ProcessAttendCall implements Runnable{
                 .bodyToMono(Employee.class)
                 .block();
                 
-        employee.getCallsAttended().add(call);
+        if(employee != null) {
+            
+            employee.getCallsAttended().add(call);
         
-        try {
-            Thread.sleep(call.getDuration());
-        } catch(final InterruptedException e) {
-            log.error(e.getMessage());
+            try {
+                Thread.sleep(call.getDuration());
+            } catch(final InterruptedException e) {
+                log.error(e.getMessage());
+            }
+            
+            webClientEmployeeService.post()
+                                .uri(pathEmployeeService)
+                                .body(fromObject(employee))
+                                .retrieve()
+                                .bodyToMono(Void.class);
+        } else {
+            
+            int priority = call.getPriority();
+            
+            call.setPriority(++priority);
+            
+            webClientCallService.post()
+                                .uri(pathCallService)
+                                .body(fromObject(call))
+                                .retrieve()
+                                .bodyToMono(Void.class);
         }
         
-        webClientEmployeeService.post()
-                            .uri(pathEmployeeService)
-                            .body(fromObject(employee))
-                            .retrieve()
-                            .bodyToMono(Void.class);
     }
 }
