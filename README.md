@@ -16,6 +16,7 @@ Proyecto sobre funcionamiento de call center en java para Almundo
 * Maven
 * CircleCI
 * Codecov
+* Loombok
 
 El uso de **Codecov** es para conocer la cobertura de pruebas unitarias, este proyecto fue trabajado bajo el proceso de **TDD** (Test-driven development) por lo cual es valioso mostrar el porcentaje de cobertura directamente desde la documentacion gracias al distintivo:
 
@@ -28,6 +29,8 @@ o mas graficamente:
 El uso de **CircleCI** es para tener una integracion continua y asi poder estar pendiente por cada commit que se realiza, que todo compilara y se ejecutaran las pruebas implementadas de forma correcta, para de esta forma garantizar que por algun commit realizado no dañar las funcionalidades ya existentes, se puede conocer el estado de la ultima construccion gracias al indicativo:
 
 ![CircleCI Status](https://circleci.com/gh/mariomurillo/Callcenter-Almundo.svg?style=svg)
+
+Tambien se uso la libreria de **Loombok**, para la reutilizacion de codigo y dejar el codigo mas limpio y facil de leer.
 
 Para la solucion del problema planteado, se decidio construir tres microservicios rest, uno para el manejo de una cola de prioridad para las llamadas, otro para el manejo de una cola de prioridad para los empleados y por ultimo uno con el **Dispatcher**, que es el encargado del procesamiento de llamadas y asignacion a los empleados. 
 
@@ -72,3 +75,4 @@ Se decidio manejar un proyecto padre con un **pom**, para facilitar la construcc
 * https://www.slideshare.net/StphaneMaldini/reactor-30-a-reactive-foundation-for-java-8-and-spring
 * https://docs.codecov.io/docs/supported-languages
 * https://circleci.com/docs/2.0/
+* https://projectlombok.org/
